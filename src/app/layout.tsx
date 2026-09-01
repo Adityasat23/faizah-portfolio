@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { helvetica } from "@/lib/fonts";
 import "./globals.css";
 
+export const runtime = "edge";
+
 export const metadata: Metadata = {
   title: "Faizah Creative Archive",
   description: "Creative Professional Portfolio — Branding, Design, Creative Direction",
