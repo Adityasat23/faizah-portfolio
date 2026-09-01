@@ -22,9 +22,9 @@ const projectSchema = z.object({
   subtitle: z.string().optional(),
   description: z.string().optional(),
   what_we_did: z.string().optional(),
-  category_tags: z.array(z.string()).default([]),
+  category_tags: z.array(z.string()),
   video_url: z.string().optional(),
-  is_published: z.boolean().default(true),
+  is_published: z.boolean(),
 });
 
 type ProjectFormValues = z.infer<typeof projectSchema>;

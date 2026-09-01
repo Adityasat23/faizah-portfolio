@@ -12,7 +12,7 @@ const settingsSchema = z.object({
   about_text: z.string().optional(),
   email: z.string().email().optional().or(z.literal("")),
   linkedin_url: z.string().url().optional().or(z.literal("")),
-  is_available_for_work: z.boolean().default(true),
+  is_available_for_work: z.boolean(),
 });
 
 type SettingsFormValues = z.infer<typeof settingsSchema>;
