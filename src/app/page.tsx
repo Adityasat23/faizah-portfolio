@@ -31,7 +31,7 @@ export default function Home() {
           console.error("Settings Error:", settingsError);
           setFetchError(settingsError.message);
         }
-
+  
         if (settingsData) {
           setSettings({
             hero_text: settingsData.hero_text || "Faizah *she/her* is an independent creative director and designer who builds brands that resonate.",
