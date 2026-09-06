@@ -13,6 +13,9 @@ const settingsSchema = z.object({
   email: z.string().email().optional().or(z.literal("")),
   linkedin_url: z.string().url().optional().or(z.literal("")),
   is_available_for_work: z.boolean(),
+  theme: z.string().optional(),
+  hero_image_radius: z.string().optional(),
+  hero_image_padding: z.string().optional(),
 });
 
 type SettingsFormValues = z.infer<typeof settingsSchema>;
@@ -37,7 +40,10 @@ export default function AdminSettings() {
           about_text: data.about_text || "",
           email: data.email || "",
           linkedin_url: data.linkedin_url || "",
-          is_available_for_work: data.is_available_for_work !== false, // default true
+          is_available_for_work: data.is_available_for_work !== false,
+          theme: data.theme || "light",
+          hero_image_radius: data.hero_image_radius || "rounded-[1.5rem]",
+          hero_image_padding: data.hero_image_padding || "p-0",
         });
         setCurrentHeroImage(data.hero_image_url || null);
       }
@@ -86,6 +92,9 @@ export default function AdminSettings() {
       linkedin_url: data.linkedin_url,
       is_available_for_work: data.is_available_for_work,
       hero_image_url: uploadedImageUrl,
+      theme: data.theme,
+      hero_image_radius: data.hero_image_radius,
+      hero_image_padding: data.hero_image_padding,
       updated_at: new Date().toISOString()
     };
 
@@ -142,7 +151,50 @@ export default function AdminSettings() {
           </label>
         </div>
 
-        {/* HERO IMAGE */}
+        {/* THEME SELECTION */}
+        <div>
+          <label className="block text-sm font-bold text-gray-700 mb-2">Global Theme</label>
+          <select 
+            {...register("theme")} 
+            className="w-full border-gray-300 border px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+          >
+            <option value="light">Light Theme (Cream & Brown)</option>
+            <option value="dark">Dark Theme (Dark Brown & Pink)</option>
+          </select>
+          <p className="text-xs text-gray-500 mt-2">Pilih tema keseluruhan website (sesuai brief).</p>
+        </div>
+
+        {/* HERO IMAGE CUSTOMIZATION */}
+        <div className="p-4 bg-gray-50 rounded-xl border border-gray-100 space-y-4">
+          <h3 className="font-bold text-gray-700 border-b border-gray-200 pb-2">Hero Image Styling (PDF Hal 12)</h3>
+          <div>
+            <label className="block text-sm font-bold text-gray-700 mb-2">Border Radius (Rounded)</label>
+            <select 
+              {...register("hero_image_radius")} 
+              className="w-full border-gray-300 border px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+            >
+              <option value="rounded-none">Kotak (0px)</option>
+              <option value="rounded-[1rem]">Rounded Normal (16px)</option>
+              <option value="rounded-[1.5rem]">Rounded Besar (24px)</option>
+              <option value="rounded-full">Pill / Lingkaran</option>
+              <option value="rounded-l-[2rem]">Hanya Kiri Rounded</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-bold text-gray-700 mb-2">Image Padding (Margin dalam)</label>
+            <select 
+              {...register("hero_image_padding")} 
+              className="w-full border-gray-300 border px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+            >
+              <option value="p-0">Tanpa Margin (Full/0px)</option>
+              <option value="p-2 md:p-4">Margin Kecil</option>
+              <option value="p-6 md:p-8">Margin Sedang</option>
+              <option value="p-10 md:p-12">Margin Besar</option>
+            </select>
+          </div>
+        </div>
+
+        {/* HERO IMAGE UPLOAD */}
         <div>
           <label className="block text-sm font-bold text-gray-700 mb-2">Hero Image (Homepage Portrait)</label>
           {currentHeroImage && (

@@ -43,11 +43,12 @@ export function ProjectCard({ id, title, subtitle, image }: ProjectCardProps) {
             hover: { opacity: 1 }
           }}
           initial="initial"
-          className="absolute inset-0 bg-[#432016]/40 flex items-center justify-center backdrop-blur-sm transition-opacity duration-500 z-20"
+          className="absolute inset-0 bg-[#432016]/20 flex items-center justify-center backdrop-blur-sm transition-opacity duration-500 z-20"
         >
-          <Button variant="secondary" className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500 bg-[#FFFFAD] text-[#432016]">
-            View Work
-          </Button>
+          <div className="translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-[#111] text-white rounded-full px-6 py-3 flex items-center gap-3 shadow-xl">
+            <span className="opacity-70">&lt; / &gt;</span> 
+            <span className="font-bold tracking-widest uppercase text-sm">View Work</span>
+          </div>
         </motion.div>
       </motion.div>
     </Link>

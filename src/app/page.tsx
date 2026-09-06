@@ -9,6 +9,16 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { siteConfig } from "@/lib/siteConfig";
+import { Compass, Camera, Target, PenTool, Rocket, Palette } from "lucide-react";
+
+const TAG_ICONS: Record<string, React.ElementType> = {
+  'Creative Direction': Compass,
+  'Asset Production': Camera,
+  'Branding Strategy': Target,
+  'Creative & Content Writing': PenTool,
+  'Conceptual Launching': Rocket,
+  'Graphic Design': Palette,
+};
 
 export default function Home() {
   const [projects, setProjects] = useState<any[]>([]);
@@ -111,17 +121,17 @@ export default function Home() {
                   {renderFormattedText(settings.hero_text, "italic font-light lowercase")}
                 </motion.h1>
 
-                <div className="grid grid-cols-1 md:grid-cols-[45%_55%] gap-0 border-y border-[#432016]/10">
+                <div className="grid grid-cols-1 md:grid-cols-[45%_55%] gap-0">
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ type: "spring", stiffness: 100, delay: 0.2 }}
-                    className="aspect-[4/5] bg-[#FFFFAD] md:border-r border-[#432016]/10 p-4 rounded-t-3xl md:rounded-tr-none md:rounded-l-3xl"
+                    className={`aspect-[4/5] bg-[#FFFFAD] ${settings.hero_image_padding || 'p-0'} rounded-t-3xl md:rounded-tr-none md:rounded-l-3xl overflow-hidden`}
                   >
                     <img 
                       src={settings.hero_image_url} 
                       alt="Portrait of Faizah"
-                      className="w-full h-full object-cover rounded-2xl"
+                      className={`w-full h-full object-cover ${settings.hero_image_radius || 'rounded-[1.5rem]'}`}
                     />
                   </motion.div>
                   
@@ -142,9 +152,9 @@ export default function Home() {
         </section>
 
         {/* BODY / SHOWCASED WORKS */}
-        <section className="py-24 px-6 md:px-12 bg-white rounded-[3rem] border border-[#432016]/5 shadow-sm">
+        <section className="py-24 px-6 md:px-12 bg-white rounded-[3rem] border border-[#432016]/5 shadow-sm overflow-hidden">
           <div className="container mx-auto max-w-7xl">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-8">
               <motion.h2 
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -154,15 +164,26 @@ export default function Home() {
               >
                 Selected <span className="italic font-light lowercase">Works</span>
               </motion.h2>
-              <motion.div 
-                initial={{ scale: 0.9, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ type: "spring", stiffness: 100, delay: 0.2 }}
-                className="bg-[#FFC5E6] text-[#432016] px-6 py-3 rounded-full text-xl md:text-3xl font-bold whitespace-nowrap self-start md:self-end"
-              >
-                From <span className="italic font-light">Vision</span> to <span className="italic font-light">Reality</span>
-              </motion.div>
+              <div className="flex flex-col md:items-end gap-6 self-start md:self-end">
+                <motion.div 
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ type: "spring", stiffness: 100, delay: 0.2 }}
+                  className="bg-[#FFC5E6] text-[#432016] px-6 py-3 rounded-full text-xl md:text-3xl font-bold whitespace-nowrap"
+                >
+                  From <span className="italic font-light">Vision</span> to <span className="italic font-light">Reality</span>
+                </motion.div>
+                
+                <div className="flex items-center gap-4">
+                  <button onClick={() => document.getElementById('project-carousel')?.scrollBy({ left: -400, behavior: 'smooth' })} className="w-12 h-12 rounded-full border border-[#432016] flex items-center justify-center text-[#432016] hover:bg-[#432016] hover:text-white transition-colors">
+                    &larr;
+                  </button>
+                  <button onClick={() => document.getElementById('project-carousel')?.scrollBy({ left: 400, behavior: 'smooth' })} className="w-12 h-12 rounded-full border border-[#432016] flex items-center justify-center text-[#432016] hover:bg-[#432016] hover:text-white transition-colors">
+                    &rarr;
+                  </button>
+                </div>
+              </div>
             </div>
 
             <motion.div
@@ -180,18 +201,24 @@ export default function Home() {
               viewport={{ once: true }}
               className="flex gap-4 mb-16 overflow-x-auto pb-4 hide-scrollbar"
             >
-              {['Creative Direction', 'Asset Production', 'Branding Strategy', 'Creative & Content Writing', 'Conceptual Launching', 'Graphic Design'].map((tag, idx) => (
-                <div key={tag} className="flex-shrink-0 flex items-center bg-[#F4F2EE] px-5 py-3 rounded-2xl border border-[#432016]/10">
-                  <span className="text-sm uppercase tracking-widest font-bold text-[#432016]">
-                    {tag}
-                  </span>
-                </div>
-              ))}
+              {['Creative Direction', 'Asset Production', 'Branding Strategy', 'Creative & Content Writing', 'Conceptual Launching', 'Graphic Design'].map((tag, idx) => {
+                const Icon = TAG_ICONS[tag];
+                return (
+                  <div key={tag} className="group flex-shrink-0 flex items-center bg-[#432016] text-white p-4 rounded-full cursor-default transition-all duration-500 hover:px-8 border border-white/10 shadow-sm">
+                    {Icon && <Icon className="w-6 h-6 flex-shrink-0" />}
+                    <div className="overflow-hidden whitespace-nowrap opacity-0 max-w-0 group-hover:max-w-[250px] group-hover:opacity-100 group-hover:ml-4 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]">
+                      <span className="text-sm uppercase tracking-widest font-bold">
+                        {tag}
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
             </motion.div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
+            <div id="project-carousel" className="flex gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory pb-12 hide-scrollbar -mx-6 px-6 md:-mx-12 md:px-12 scroll-smooth">
               {loading ? (
-                <div className="col-span-2 text-center py-20 text-[#432016]">Loading projects...</div>
+                <div className="w-full text-center py-20 text-[#432016]">Loading projects...</div>
               ) : projects.length > 0 ? (
                 projects.map((p, i) => {
                   let thumbUrl = siteConfig.defaultProjectImage;
@@ -205,10 +232,11 @@ export default function Home() {
                   return (
                     <motion.div
                       key={p.id}
-                      initial={{ opacity: 0, y: 40 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-50px" }}
+                      initial={{ opacity: 0, x: 40 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, margin: "100px" }}
                       transition={{ type: "spring", stiffness: 100, delay: i * 0.1 }}
+                      className="w-[85vw] sm:w-[350px] md:w-[450px] flex-shrink-0 snap-start"
                     >
                       <ProjectCard 
                         id={p.id}
@@ -220,7 +248,7 @@ export default function Home() {
                   );
                 })
               ) : (
-                <div className="col-span-2 text-center py-20 border border-dashed border-[#432016]/20 rounded-3xl">
+                <div className="w-full text-center py-20 border border-dashed border-[#432016]/20 rounded-3xl">
                   <p className="text-[#432016]/70 mb-4">No projects yet.</p>
                   <Link href="/admin/projects/new">
                     <Button className="bg-[#432016] text-[#DCD2EC] hover:bg-black rounded-full px-8">Add your first project in Admin</Button>

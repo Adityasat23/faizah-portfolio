@@ -146,10 +146,10 @@ export default function ProjectPage() {
               animate={{ opacity: 1, y: 0 }}
               className="lg:col-span-8 space-y-8"
             >
-              <h1 className="text-5xl md:text-8xl font-bold tracking-tighter text-[#FFC5E6] bg-[#432016] inline-block px-4 py-2 leading-none">
+              <h1 className="text-5xl md:text-8xl font-bold tracking-tighter text-[#432016] leading-none uppercase">
                 {project.title}
               </h1>
-              <div className="border border-[#432016]/20 p-8 md:p-12 bg-white">
+              <div className="pt-2">
                 <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-[#432016] mb-8 leading-[1.1]">
                   {project.subtitle}
                 </h2>
@@ -164,15 +164,18 @@ export default function ProjectPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="lg:col-span-4 space-y-8"
+              className="lg:col-span-4 space-y-12 pt-4"
             >
               {/* Scope of Work / Categories */}
               {((project.category_tags && project.category_tags.length > 0) || (project.scope_of_work && project.scope_of_work.length > 0)) && (
-                <div>
-                  <h3 className="text-[#FFC5E6] bg-[#432016] inline-block px-3 py-1 font-bold tracking-tighter text-2xl mb-2">Scope of Work</h3>
-                  <ul className="text-2xl font-light text-[#432016] leading-snug">
+                <div className="bg-[#432016] text-[#FFC5E6] p-8 rounded-3xl shadow-sm">
+                  <h3 className="font-bold tracking-tighter text-3xl mb-6 border-b border-[#FFC5E6]/20 pb-4">Scope of Work</h3>
+                  <ul className="text-xl md:text-2xl font-light leading-relaxed">
                     {(project.category_tags && project.category_tags.length > 0 ? project.category_tags : project.scope_of_work).map((item: string) => (
-                      <li key={item} className="mb-1">{item}</li>
+                      <li key={item} className="mb-3 flex items-start gap-3">
+                        <span className="text-[#FFC5E6]/50 mt-1">✦</span>
+                        {item}
+                      </li>
                     ))}
                   </ul>
                 </div>
@@ -180,11 +183,14 @@ export default function ProjectPage() {
 
               {/* What We Did Box */}
               {project.what_we_did && project.what_we_did.length > 0 && (
-                <div className="border border-[#432016]/20 p-6 bg-white">
-                  <h3 className="font-bold text-[#432016] mb-4">What We Did:</h3>
-                  <ul className="space-y-2 text-xs font-bold text-[#432016]/80 tracking-wide uppercase">
+                <div className="bg-white border border-[#432016]/10 p-8 rounded-3xl shadow-sm">
+                  <h3 className="font-bold tracking-tighter text-[#432016] text-2xl mb-6 border-b border-[#432016]/10 pb-4">What We Did</h3>
+                  <ul className="space-y-3 text-sm font-bold text-[#432016]/70 tracking-wide uppercase">
                     {project.what_we_did.map((item: string) => (
-                      <li key={item}>{item}</li>
+                      <li key={item} className="flex items-center gap-3">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#432016]/30"></span>
+                        {item}
+                      </li>
                     ))}
                   </ul>
                 </div>
