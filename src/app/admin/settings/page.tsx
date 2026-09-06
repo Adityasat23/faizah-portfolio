@@ -27,6 +27,8 @@ export default function AdminSettings() {
   const [successMessage, setSuccessMessage] = useState("");
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [currentHeroImage, setCurrentHeroImage] = useState<string | null>(null);
+  const [logoFile, setLogoFile] = useState<File | null>(null);
+  const [currentLogoImage, setCurrentLogoImage] = useState<string | null>(null);
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm<SettingsFormValues>({
     resolver: zodResolver(settingsSchema),
@@ -48,6 +50,7 @@ export default function AdminSettings() {
           hero_image_padding: data.hero_image_padding || "p-0",
         });
         setCurrentHeroImage(data.hero_image_url || null);
+        setCurrentLogoImage(data.logo_image_url || null);
       }
       setFetching(false);
     }
@@ -59,6 +62,32 @@ export default function AdminSettings() {
     setSuccessMessage("");
     
     let uploadedImageUrl = currentHeroImage;
+    let uploadedLogoUrl = currentLogoImage;
+
+    // Handle logo image upload
+    if (logoFile) {
+      try {
+        const fileExt = logoFile.name.split('.').pop();
+        const fileName = `logo_${Math.random()}.${fileExt}`;
+        const filePath = `settings/${fileName}`;
+
+        const { error: uploadError } = await supabase.storage
+          .from('portfolio_images')
+          .upload(filePath, logoFile);
+
+        if (uploadError) throw uploadError;
+
+        const { data: publicUrlData } = supabase.storage
+          .from('portfolio_images')
+          .getPublicUrl(filePath);
+
+        uploadedLogoUrl = publicUrlData.publicUrl;
+      } catch (err: any) {
+        alert("Logo upload failed: " + err.message);
+        setLoading(false);
+        return;
+      }
+    }
 
     // Handle hero image upload
     if (imageFile) {
@@ -94,6 +123,7 @@ export default function AdminSettings() {
       linkedin_url: data.linkedin_url,
       is_available_for_work: data.is_available_for_work,
       hero_image_url: uploadedImageUrl,
+      logo_image_url: uploadedLogoUrl,
       theme: data.theme,
       hero_container_radius: data.hero_container_radius,
       hero_image_radius: data.hero_image_radius,
@@ -112,6 +142,7 @@ export default function AdminSettings() {
       } else {
         setSuccessMessage("Settings updated successfully!");
         setCurrentHeroImage(uploadedImageUrl);
+        setCurrentLogoImage(uploadedLogoUrl);
       }
     } else {
       const { error: insertError } = await supabase.from("site_settings").insert(payload);
@@ -120,6 +151,7 @@ export default function AdminSettings() {
       } else {
         setSuccessMessage("Settings created successfully!");
         setCurrentHeroImage(uploadedImageUrl);
+        setCurrentLogoImage(uploadedLogoUrl);
       }
     }
     setLoading(false);
@@ -140,7 +172,7 @@ export default function AdminSettings() {
         </div>
       )}
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 bg-secondary p-8 rounded-2xl border border-gray-200 shadow-sm">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 bg-white p-8 rounded-2xl border border-gray-200 shadow-sm">
         
         {/* AVAILABILITY TOGGLE */}
         <div className="p-4 bg-gray-50 rounded-xl border border-gray-100">
@@ -208,6 +240,23 @@ export default function AdminSettings() {
           </div>
         </div>
 
+        {/* LOGO IMAGE UPLOAD */}
+        <div>
+          <label className="block text-sm font-bold text-gray-700 mb-2">Website Logo (Navbar)</label>
+          {currentLogoImage && (
+            <div className="mb-4">
+              <img src={currentLogoImage} alt="Current Logo" className="h-16 object-contain rounded-lg border border-gray-200 bg-gray-50 p-2" />
+            </div>
+          )}
+          <input 
+            type="file" 
+            accept="image/*"
+            onChange={(e) => setLogoFile(e.target.files?.[0] || null)}
+            className="w-full border-gray-300 border px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-[#DCD2EC] file:text-[#432016] hover:file:bg-[#DCD2EC]/80"
+          />
+          <p className="text-xs text-gray-500 mt-2">Biarkan kosong jika ingin menggunakan teks "FAIZAH" bawaan.</p>
+        </div>
+
         {/* HERO IMAGE UPLOAD */}
         <div>
           <label className="block text-sm font-bold text-gray-700 mb-2">Hero Image (Homepage Portrait)</label>
@@ -220,7 +269,7 @@ export default function AdminSettings() {
             type="file" 
             accept="image/*"
             onChange={(e) => setImageFile(e.target.files?.[0] || null)}
-            className="w-full border-gray-300 border px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-main file:text-accent-dark hover:file:bg-main/80"
+            className="w-full border-gray-300 border px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-\[#DCD2EC\] file:text-[#432016] hover:file:bg-\[#DCD2EC\]/80"
           />
         </div>
 

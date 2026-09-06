@@ -40,7 +40,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   return (
     <div className="min-h-screen flex bg-gray-50 text-gray-900 font-sans">
       {/* Sidebar */}
-      <aside className="w-64 bg-secondary border-r border-gray-200 flex flex-col">
+      <aside className="w-64 bg-white border-r border-gray-200 flex flex-col">
         <div className="p-6 border-b border-gray-200">
           <Link href="/admin" className="font-bold text-xl tracking-tight">FAIZAH ADMIN</Link>
         </div>
@@ -68,7 +68,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <Link 
             href="/" 
             target="_blank"
-            className="block w-full text-left px-4 py-2 text-sm text-accent-dark hover:bg-gray-100 rounded-lg font-medium"
+            className="block w-full text-left px-4 py-2 text-sm text-[#432016] hover:bg-gray-100 rounded-lg font-medium"
           >
             View Live Site ↗
           </Link>

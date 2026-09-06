@@ -57,7 +57,7 @@ export default function AdminProjects() {
         </Link>
       </header>
 
-      <div className="bg-secondary rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+      <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
         {loading ? (
           <div className="p-8 text-center text-gray-500">Loading projects...</div>
         ) : projects.length === 0 ? (

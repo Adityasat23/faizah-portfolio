@@ -6,10 +6,23 @@ import { supabase } from "@/lib/supabase";
 export const runtime = "edge";
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "Faizah Creative Archive",
-  description: "Creative Professional Portfolio — Branding, Design, Creative Direction",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  let logoUrl = undefined;
+  try {
+    const { data } = await supabase.from("site_settings").select("logo_image_url").limit(1).single();
+    if (data?.logo_image_url) {
+      logoUrl = data.logo_image_url;
+    }
+  } catch (e) {
+    console.error(e);
+  }
+
+  return {
+    title: "Faizah Creative Archive",
+    description: "Creative Professional Portfolio — Branding, Design, Creative Direction",
+    icons: logoUrl ? { icon: logoUrl } : undefined,
+  };
+}
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   let theme = "light";

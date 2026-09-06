@@ -32,7 +32,7 @@ export default function AdminDashboard() {
       </header>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-secondary p-6 rounded-2xl border border-gray-200 shadow-sm">
+        <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
           <h2 className="text-sm font-bold text-gray-500 uppercase tracking-widest mb-2">Total Projects</h2>
           <p className="text-5xl font-bold">{stats.projects}</p>
         </div>

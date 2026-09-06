@@ -190,7 +190,7 @@ export default function EditProjectPage() {
         </div>
       )}
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 bg-secondary p-8 rounded-2xl border border-gray-200 shadow-sm">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 bg-white p-8 rounded-2xl border border-gray-200 shadow-sm">
         <div>
           <label className="block text-sm font-bold text-gray-700 mb-2">Title</label>
           <input 
@@ -228,7 +228,7 @@ export default function EditProjectPage() {
             multiple
             accept="image/*"
             onChange={(e) => setImageFiles(Array.from(e.target.files || []))}
-            className="w-full border-gray-300 border px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-main file:text-accent-dark hover:file:bg-main/80"
+            className="w-full border-gray-300 border px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-\[#DCD2EC\] file:text-[#432016] hover:file:bg-\[#DCD2EC\]/80"
           />
         </div>
 

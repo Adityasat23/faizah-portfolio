@@ -14,16 +14,18 @@ export function Navbar() {
   
   const [links, setLinks] = useState({
     email: siteConfig.email,
-    linkedin: siteConfig.linkedin
+    linkedin: siteConfig.linkedin,
+    logo_url: ""
   });
 
   useEffect(() => {
     async function fetchSettings() {
-      const { data } = await supabase.from('site_settings').select('email, linkedin_url').limit(1).single();
+      const { data } = await supabase.from('site_settings').select('email, linkedin_url, logo_image_url').limit(1).single();
       if (data) {
         setLinks(prev => ({
           email: data.email || prev.email,
-          linkedin: data.linkedin_url || prev.linkedin
+          linkedin: data.linkedin_url || prev.linkedin,
+          logo_url: data.logo_image_url || prev.logo_url
         }));
       }
     }
@@ -54,8 +56,12 @@ export function Navbar() {
     >
       <div className="flex items-center justify-between text-accent-dark">
         {/* Logo */}
-        <Link href="/" className="text-xl font-bold tracking-tight px-6 py-4 md:px-12 border-r border-accent-dark/20 flex-shrink-0">
-          FAIZAH
+        <Link href="/" className="text-xl font-bold tracking-tight px-6 py-4 md:px-12 border-r border-accent-dark/20 flex-shrink-0 flex items-center min-h-[64px]">
+          {links.logo_url ? (
+            <img src={links.logo_url} alt="Faizah Logo" className="h-6 md:h-8 object-contain" />
+          ) : (
+            "FAIZAH"
+          )}
         </Link>
 
         {/* Desktop Menu */}
