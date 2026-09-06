@@ -244,8 +244,15 @@ export default function AdminSettings() {
         <div>
           <label className="block text-sm font-bold text-gray-700 mb-2">Website Logo (Navbar)</label>
           {currentLogoImage && (
-            <div className="mb-4">
+            <div className="mb-4 flex items-start gap-4">
               <img src={currentLogoImage} alt="Current Logo" className="h-16 object-contain rounded-lg border border-gray-200 bg-gray-50 p-2" />
+              <button 
+                type="button"
+                onClick={() => setCurrentLogoImage(null)}
+                className="text-sm text-red-600 hover:text-red-700 font-bold px-3 py-2 border border-red-200 rounded-lg bg-red-50 hover:bg-red-100 transition-colors"
+              >
+                Hapus Logo
+              </button>
             </div>
           )}
           <input 
@@ -261,8 +268,15 @@ export default function AdminSettings() {
         <div>
           <label className="block text-sm font-bold text-gray-700 mb-2">Hero Image (Homepage Portrait)</label>
           {currentHeroImage && (
-            <div className="mb-4">
+            <div className="mb-4 flex items-start gap-4">
               <img src={currentHeroImage} alt="Current Hero" className="w-32 h-32 object-cover rounded-lg border border-gray-200" />
+              <button 
+                type="button"
+                onClick={() => setCurrentHeroImage(null)}
+                className="text-sm text-red-600 hover:text-red-700 font-bold px-3 py-2 border border-red-200 rounded-lg bg-red-50 hover:bg-red-100 transition-colors"
+              >
+                Hapus Foto
+              </button>
             </div>
           )}
           <input 
