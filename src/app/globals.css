@@ -15,7 +15,7 @@
   --theme-secondary-blue: #0F172A;
   --theme-accent-dark: #FFC5E6;
   --theme-accent-yellow: #432016; /* Made yellow darker for dark mode */
-  --theme-accent-pink: #DCD2EC;
+  --theme-accent-pink: #1C090A; /* Dark brown to contrast with light pink backgrounds */
 }
 
 @theme inline {

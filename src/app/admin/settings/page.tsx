@@ -15,6 +15,7 @@ const settingsSchema = z.object({
   is_available_for_work: z.boolean(),
   theme: z.string().optional(),
   hero_image_radius: z.string().optional(),
+  hero_container_radius: z.string().optional(),
   hero_image_padding: z.string().optional(),
 });
 
@@ -42,6 +43,7 @@ export default function AdminSettings() {
           linkedin_url: data.linkedin_url || "",
           is_available_for_work: data.is_available_for_work !== false,
           theme: data.theme || "light",
+          hero_container_radius: data.hero_container_radius || "rounded-[3rem]",
           hero_image_radius: data.hero_image_radius || "rounded-[1.5rem]",
           hero_image_padding: data.hero_image_padding || "p-0",
         });
@@ -93,6 +95,7 @@ export default function AdminSettings() {
       is_available_for_work: data.is_available_for_work,
       hero_image_url: uploadedImageUrl,
       theme: data.theme,
+      hero_container_radius: data.hero_container_radius,
       hero_image_radius: data.hero_image_radius,
       hero_image_padding: data.hero_image_padding,
       updated_at: new Date().toISOString()
@@ -168,7 +171,18 @@ export default function AdminSettings() {
         <div className="p-4 bg-gray-50 rounded-xl border border-gray-100 space-y-4">
           <h3 className="font-bold text-gray-700 border-b border-gray-200 pb-2">Hero Image Styling (PDF Hal 12)</h3>
           <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">Border Radius (Rounded)</label>
+            <label className="block text-sm font-bold text-gray-700 mb-2">Border Radius (Box Luar - Kuning)</label>
+            <select 
+              {...register("hero_container_radius")} 
+              className="w-full border-gray-300 border px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+            >
+              <option value="rounded-none">Kotak Tajam (0px)</option>
+              <option value="rounded-[1.5rem]">Rounded Normal (24px)</option>
+              <option value="rounded-[3rem]">Rounded Besar (48px - Default)</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-bold text-gray-700 mb-2">Border Radius (Box Dalam - Foto)</label>
             <select 
               {...register("hero_image_radius")} 
               className="w-full border-gray-300 border px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"

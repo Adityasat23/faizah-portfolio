@@ -48,6 +48,7 @@ export default function Home() {
             about_text: settingsData.about_text || "Creative professional specializing in branding, design, and creative direction.",
             hero_image_url: settingsData.hero_image_url || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=2564&auto=format&fit=crop",
             hero_image_radius: settingsData.hero_image_radius,
+            hero_container_radius: settingsData.hero_container_radius,
             hero_image_padding: settingsData.hero_image_padding,
             theme: settingsData.theme,
           });
@@ -124,7 +125,7 @@ export default function Home() {
                   {renderFormattedText(settings.hero_text, "italic font-light lowercase")}
                 </motion.h1>
 
-                <div className={`grid grid-cols-1 md:grid-cols-[45%_55%] gap-0 bg-accent-yellow overflow-hidden ${settings.hero_image_radius || 'rounded-[1.5rem]'}`}>
+                <div className={`grid grid-cols-1 md:grid-cols-[45%_55%] gap-0 bg-accent-yellow overflow-hidden ${settings.hero_container_radius || 'rounded-[3rem]'}`}>
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -179,10 +180,10 @@ export default function Home() {
                 </motion.div>
                 
                 <div className="flex items-center gap-4">
-                  <button onClick={() => document.getElementById('project-carousel')?.scrollBy({ left: -400, behavior: 'smooth' })} className="w-12 h-12 rounded-full border border-accent-dark flex items-center justify-center text-accent-dark hover:bg-accent-dark hover:text-white transition-colors">
+                  <button onClick={() => document.getElementById('project-carousel')?.scrollBy({ left: -400, behavior: 'smooth' })} className="w-12 h-12 rounded-full border border-accent-dark flex items-center justify-center text-accent-dark hover:bg-accent-dark hover:text-secondary transition-colors">
                     &larr;
                   </button>
-                  <button onClick={() => document.getElementById('project-carousel')?.scrollBy({ left: 400, behavior: 'smooth' })} className="w-12 h-12 rounded-full border border-accent-dark flex items-center justify-center text-accent-dark hover:bg-accent-dark hover:text-white transition-colors">
+                  <button onClick={() => document.getElementById('project-carousel')?.scrollBy({ left: 400, behavior: 'smooth' })} className="w-12 h-12 rounded-full border border-accent-dark flex items-center justify-center text-accent-dark hover:bg-accent-dark hover:text-secondary transition-colors">
                     &rarr;
                   </button>
                 </div>
@@ -207,7 +208,7 @@ export default function Home() {
               {['Creative Direction', 'Asset Production', 'Branding Strategy', 'Creative & Content Writing', 'Conceptual Launching', 'Graphic Design'].map((tag, idx) => {
                 const Icon = TAG_ICONS[tag];
                 return (
-                  <div key={tag} className="group flex-shrink-0 flex items-center bg-accent-dark text-white p-4 rounded-full cursor-default transition-all duration-500 hover:px-8 border border-white/10 shadow-sm">
+                  <div key={tag} className="group flex-shrink-0 flex items-center bg-accent-dark text-secondary p-4 rounded-full cursor-default transition-all duration-500 hover:px-8 border border-secondary/20 shadow-sm">
                     {Icon && <Icon className="w-6 h-6 flex-shrink-0" />}
                     <div className="overflow-hidden whitespace-nowrap opacity-0 max-w-0 group-hover:max-w-[250px] group-hover:opacity-100 group-hover:ml-4 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]">
                       <span className="text-sm uppercase tracking-widest font-bold">
