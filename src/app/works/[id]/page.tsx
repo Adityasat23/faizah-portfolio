@@ -183,7 +183,7 @@ export default function ProjectPage() {
 
               {/* What We Did Box */}
               {project.what_we_did && project.what_we_did.length > 0 && (
-                <div className="bg-white border border-accent-dark/10 p-8 rounded-3xl shadow-sm">
+                <div className="bg-secondary border border-accent-dark/10 p-8 rounded-3xl shadow-sm">
                   <h3 className="font-bold tracking-tighter text-accent-dark text-2xl mb-6 border-b border-accent-dark/10 pb-4">What We Did</h3>
                   <ul className="space-y-3 text-sm font-bold text-accent-dark/70 tracking-wide uppercase">
                     {project.what_we_did.map((item: string) => (

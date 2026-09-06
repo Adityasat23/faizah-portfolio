@@ -190,7 +190,7 @@ export default function EditProjectPage() {
         </div>
       )}
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 bg-white p-8 rounded-2xl border border-gray-200 shadow-sm">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 bg-secondary p-8 rounded-2xl border border-gray-200 shadow-sm">
         <div>
           <label className="block text-sm font-bold text-gray-700 mb-2">Title</label>
           <input 

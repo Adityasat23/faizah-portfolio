@@ -4,6 +4,7 @@ import "./globals.css";
 import { supabase } from "@/lib/supabase";
 
 export const runtime = "edge";
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Faizah Creative Archive",

@@ -32,7 +32,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-6">
-      <div className="bg-white p-12 rounded-3xl shadow-xl w-full max-w-md">
+      <div className="bg-secondary p-12 rounded-3xl shadow-xl w-full max-w-md">
         <h1 className="text-3xl font-bold mb-2 tracking-tight">Admin Login</h1>
         <p className="text-gray-500 mb-8 font-light">Access the Faizah Creative Archive CMS.</p>
 

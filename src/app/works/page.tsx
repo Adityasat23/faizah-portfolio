@@ -36,7 +36,7 @@ export default function WorksPage() {
     <>
       <Navbar />
       
-      <main className="bg-white min-h-screen pt-40 pb-24 px-4 md:px-6">
+      <main className="bg-secondary min-h-screen pt-40 pb-24 px-4 md:px-6">
         <div className="container mx-auto max-w-7xl">
           <div className="mb-20">
             <h1 className="text-6xl md:text-[8vw] font-bold tracking-tighter text-accent-dark leading-[0.9] uppercase mb-8">
@@ -47,7 +47,7 @@ export default function WorksPage() {
               <button 
                 onClick={() => setActiveCategory(null)}
                 className={`flex-shrink-0 flex items-center transition-colors px-5 py-3 rounded-2xl border border-accent-dark/10 ${
-                  activeCategory === null ? 'bg-[#B9DBFF]' : 'bg-secondary hover:bg-main'
+                  activeCategory === null ? 'bg-secondary-blue' : 'bg-secondary hover:bg-main'
                 }`}
               >
                 <span className="text-sm uppercase tracking-widest font-bold text-accent-dark">
@@ -60,7 +60,7 @@ export default function WorksPage() {
                   key={tag} 
                   onClick={() => setActiveCategory(tag)}
                   className={`flex-shrink-0 flex items-center transition-colors px-5 py-3 rounded-2xl border border-accent-dark/10 ${
-                    activeCategory === tag ? 'bg-[#B9DBFF]' : 'bg-secondary hover:bg-main'
+                    activeCategory === tag ? 'bg-secondary-blue' : 'bg-secondary hover:bg-main'
                   }`}
                 >
                   <span className="text-sm uppercase tracking-widest font-bold text-accent-dark">

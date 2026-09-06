@@ -1,38 +1,38 @@
 @import "tailwindcss";
 
 :root {
-  --color-main: #DCD2EC;
-  --color-secondary: #F4F2EE;
-  --color-secondary-blue: #B9DBFF;
-  --color-accent-dark: #432016;
-  --color-accent-yellow: #FFFFAD;
-  --color-accent-pink: #FFC5E6;
+  --theme-main: #DCD2EC;
+  --theme-secondary: #F4F2EE;
+  --theme-secondary-blue: #B9DBFF;
+  --theme-accent-dark: #432016;
+  --theme-accent-yellow: #FFFFAD;
+  --theme-accent-pink: #FFC5E6;
 }
 
 [data-theme="dark"] {
-  --color-main: #2A1215;
-  --color-secondary: #1C090A;
-  --color-secondary-blue: #0F172A;
-  --color-accent-dark: #FFC5E6;
-  --color-accent-yellow: #DCD2EC;
-  --color-accent-pink: #432016;
+  --theme-main: #2A1215;
+  --theme-secondary: #1C090A;
+  --theme-secondary-blue: #0F172A;
+  --theme-accent-dark: #FFC5E6;
+  --theme-accent-yellow: #432016; /* Made yellow darker for dark mode */
+  --theme-accent-pink: #DCD2EC;
 }
 
 @theme inline {
-  --color-main: var(--color-main);
-  --color-secondary: var(--color-secondary);
-  --color-secondary-blue: var(--color-secondary-blue);
-  --color-accent-dark: var(--color-accent-dark);
-  --color-accent-yellow: var(--color-accent-yellow);
-  --color-accent-pink: var(--color-accent-pink);
+  --color-main: var(--theme-main);
+  --color-secondary: var(--theme-secondary);
+  --color-secondary-blue: var(--theme-secondary-blue);
+  --color-accent-dark: var(--theme-accent-dark);
+  --color-accent-yellow: var(--theme-accent-yellow);
+  --color-accent-pink: var(--theme-accent-pink);
 
   --font-sans: var(--font-helvetica), -apple-system, sans-serif;
   --font-helvetica: var(--font-helvetica);
 }
 
 body {
-  background-color: var(--color-main);
-  color: var(--color-accent-dark);
+  background-color: var(--theme-main);
+  color: var(--theme-accent-dark);
 }
 
 @layer utilities {

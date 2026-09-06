@@ -137,7 +137,7 @@ export default function AdminSettings() {
         </div>
       )}
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 bg-white p-8 rounded-2xl border border-gray-200 shadow-sm">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 bg-secondary p-8 rounded-2xl border border-gray-200 shadow-sm">
         
         {/* AVAILABILITY TOGGLE */}
         <div className="p-4 bg-gray-50 rounded-xl border border-gray-100">

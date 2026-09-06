@@ -124,17 +124,17 @@ export default function Home() {
                   {renderFormattedText(settings.hero_text, "italic font-light lowercase")}
                 </motion.h1>
 
-                <div className="grid grid-cols-1 md:grid-cols-[45%_55%] gap-0">
+                <div className={`grid grid-cols-1 md:grid-cols-[45%_55%] gap-0 bg-accent-yellow overflow-hidden ${settings.hero_image_radius || 'rounded-[1.5rem]'}`}>
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ type: "spring", stiffness: 100, delay: 0.2 }}
-                    className={`aspect-[4/5] bg-[#FFFFAD] ${settings.hero_image_padding || 'p-0'} rounded-t-3xl md:rounded-tr-none md:rounded-l-3xl overflow-hidden`}
+                    className={`aspect-[4/5] ${settings.hero_image_padding || 'p-0'}`}
                   >
                     <img 
                       src={settings.hero_image_url} 
                       alt="Portrait of Faizah"
-                      className={`w-full h-full object-cover ${settings.hero_image_radius || 'rounded-[1.5rem]'}`}
+                      className={`w-full h-full object-cover ${(settings.hero_image_padding && settings.hero_image_padding !== 'p-0') ? (settings.hero_image_radius || 'rounded-[1.5rem]') : ''}`}
                     />
                   </motion.div>
                   
@@ -142,7 +142,7 @@ export default function Home() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ type: "spring", stiffness: 100, delay: 0.3 }}
-                    className="bg-[#FFFFAD] p-8 md:p-12 flex flex-col justify-center rounded-b-3xl md:rounded-bl-none md:rounded-r-3xl"
+                    className="p-8 md:p-12 flex flex-col justify-center"
                   >
                     <p className="text-xl md:text-3xl font-light leading-relaxed text-accent-dark tracking-tight whitespace-pre-wrap">
                       {renderFormattedText(settings.about_text, "italic")}
@@ -155,7 +155,7 @@ export default function Home() {
         </section>
 
         {/* BODY / SHOWCASED WORKS */}
-        <section className="py-24 px-6 md:px-12 bg-white rounded-[3rem] border border-accent-dark/5 shadow-sm overflow-hidden">
+        <section className="py-24 px-6 md:px-12 bg-secondary rounded-[3rem] border border-accent-dark/5 shadow-sm overflow-hidden">
           <div className="container mx-auto max-w-7xl">
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-8">
               <motion.h2 
