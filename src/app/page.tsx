@@ -46,7 +46,10 @@ export default function Home() {
           setSettings({
             hero_text: settingsData.hero_text || "Faizah *she/her* is an independent creative director and designer who builds brands that resonate.",
             about_text: settingsData.about_text || "Creative professional specializing in branding, design, and creative direction.",
-            hero_image_url: settingsData.hero_image_url || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=2564&auto=format&fit=crop"
+            hero_image_url: settingsData.hero_image_url || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=2564&auto=format&fit=crop",
+            hero_image_radius: settingsData.hero_image_radius,
+            hero_image_padding: settingsData.hero_image_padding,
+            theme: settingsData.theme,
           });
         }
 
@@ -91,7 +94,7 @@ export default function Home() {
     <>
       <Navbar />
       
-      <main className="bg-[#DCD2EC] min-h-screen pt-24 md:pt-32 pb-6 px-4 md:px-6">
+      <main className="bg-main min-h-screen pt-24 md:pt-32 pb-6 px-4 md:px-6">
         {fetchError && (
           <div className="container mx-auto mb-6 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
             <strong className="font-bold">Error Loading Data: </strong>
@@ -100,14 +103,14 @@ export default function Home() {
         )}
 
         {/* HERO / MEET FAIZAH SECTION */}
-        <section id="about" className="min-h-[90vh] bg-[#F4F2EE] rounded-[3rem] p-6 md:p-12 mb-6 flex flex-col justify-center border border-[#432016]/5 shadow-sm relative overflow-hidden">
+        <section id="about" className="min-h-[90vh] bg-secondary rounded-[3rem] p-6 md:p-12 mb-6 flex flex-col justify-center border border-accent-dark/5 shadow-sm relative overflow-hidden">
           <div className="container mx-auto max-w-7xl relative z-10">
             {loading ? (
               <div className="animate-pulse flex flex-col space-y-12">
-                <div className="h-24 md:h-48 bg-[#432016]/10 rounded-3xl w-3/4"></div>
+                <div className="h-24 md:h-48 bg-accent-dark/10 rounded-3xl w-3/4"></div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-                  <div className="aspect-square md:aspect-auto md:h-[60vh] bg-[#432016]/10 rounded-t-3xl md:rounded-tr-none md:rounded-l-3xl"></div>
-                  <div className="bg-[#432016]/5 p-8 md:p-12 rounded-b-3xl md:rounded-bl-none md:rounded-r-3xl"></div>
+                  <div className="aspect-square md:aspect-auto md:h-[60vh] bg-accent-dark/10 rounded-t-3xl md:rounded-tr-none md:rounded-l-3xl"></div>
+                  <div className="bg-accent-dark/5 p-8 md:p-12 rounded-b-3xl md:rounded-bl-none md:rounded-r-3xl"></div>
                 </div>
               </div>
             ) : (
@@ -116,7 +119,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                  className="text-[12vw] md:text-[9vw] font-bold tracking-tighter leading-[0.9] text-[#432016] mb-12 uppercase"
+                  className="text-[12vw] md:text-[9vw] font-bold tracking-tighter leading-[0.9] text-accent-dark mb-12 uppercase"
                 >
                   {renderFormattedText(settings.hero_text, "italic font-light lowercase")}
                 </motion.h1>
@@ -141,7 +144,7 @@ export default function Home() {
                     transition={{ type: "spring", stiffness: 100, delay: 0.3 }}
                     className="bg-[#FFFFAD] p-8 md:p-12 flex flex-col justify-center rounded-b-3xl md:rounded-bl-none md:rounded-r-3xl"
                   >
-                    <p className="text-xl md:text-3xl font-light leading-relaxed text-[#432016] tracking-tight whitespace-pre-wrap">
+                    <p className="text-xl md:text-3xl font-light leading-relaxed text-accent-dark tracking-tight whitespace-pre-wrap">
                       {renderFormattedText(settings.about_text, "italic")}
                     </p>
                   </motion.div>
@@ -152,7 +155,7 @@ export default function Home() {
         </section>
 
         {/* BODY / SHOWCASED WORKS */}
-        <section className="py-24 px-6 md:px-12 bg-white rounded-[3rem] border border-[#432016]/5 shadow-sm overflow-hidden">
+        <section className="py-24 px-6 md:px-12 bg-white rounded-[3rem] border border-accent-dark/5 shadow-sm overflow-hidden">
           <div className="container mx-auto max-w-7xl">
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-8">
               <motion.h2 
@@ -160,7 +163,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ type: "spring", stiffness: 100 }}
-                className="text-6xl md:text-[7vw] font-bold tracking-tighter text-[#432016] leading-[0.9] max-w-4xl uppercase"
+                className="text-6xl md:text-[7vw] font-bold tracking-tighter text-accent-dark leading-[0.9] max-w-4xl uppercase"
               >
                 Selected <span className="italic font-light lowercase">Works</span>
               </motion.h2>
@@ -170,16 +173,16 @@ export default function Home() {
                   whileInView={{ scale: 1, opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ type: "spring", stiffness: 100, delay: 0.2 }}
-                  className="bg-[#FFC5E6] text-[#432016] px-6 py-3 rounded-full text-xl md:text-3xl font-bold whitespace-nowrap"
+                  className="bg-accent-pink text-accent-dark px-6 py-3 rounded-full text-xl md:text-3xl font-bold whitespace-nowrap"
                 >
                   From <span className="italic font-light">Vision</span> to <span className="italic font-light">Reality</span>
                 </motion.div>
                 
                 <div className="flex items-center gap-4">
-                  <button onClick={() => document.getElementById('project-carousel')?.scrollBy({ left: -400, behavior: 'smooth' })} className="w-12 h-12 rounded-full border border-[#432016] flex items-center justify-center text-[#432016] hover:bg-[#432016] hover:text-white transition-colors">
+                  <button onClick={() => document.getElementById('project-carousel')?.scrollBy({ left: -400, behavior: 'smooth' })} className="w-12 h-12 rounded-full border border-accent-dark flex items-center justify-center text-accent-dark hover:bg-accent-dark hover:text-white transition-colors">
                     &larr;
                   </button>
-                  <button onClick={() => document.getElementById('project-carousel')?.scrollBy({ left: 400, behavior: 'smooth' })} className="w-12 h-12 rounded-full border border-[#432016] flex items-center justify-center text-[#432016] hover:bg-[#432016] hover:text-white transition-colors">
+                  <button onClick={() => document.getElementById('project-carousel')?.scrollBy({ left: 400, behavior: 'smooth' })} className="w-12 h-12 rounded-full border border-accent-dark flex items-center justify-center text-accent-dark hover:bg-accent-dark hover:text-white transition-colors">
                     &rarr;
                   </button>
                 </div>
@@ -190,7 +193,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="mb-12 text-2xl md:text-4xl text-[#432016] font-light max-w-3xl leading-tight"
+              className="mb-12 text-2xl md:text-4xl text-accent-dark font-light max-w-3xl leading-tight"
             >
               I believe in making work that works <span className="italic font-normal">IRL</span> and in the scroll.
             </motion.div>
@@ -204,7 +207,7 @@ export default function Home() {
               {['Creative Direction', 'Asset Production', 'Branding Strategy', 'Creative & Content Writing', 'Conceptual Launching', 'Graphic Design'].map((tag, idx) => {
                 const Icon = TAG_ICONS[tag];
                 return (
-                  <div key={tag} className="group flex-shrink-0 flex items-center bg-[#432016] text-white p-4 rounded-full cursor-default transition-all duration-500 hover:px-8 border border-white/10 shadow-sm">
+                  <div key={tag} className="group flex-shrink-0 flex items-center bg-accent-dark text-white p-4 rounded-full cursor-default transition-all duration-500 hover:px-8 border border-white/10 shadow-sm">
                     {Icon && <Icon className="w-6 h-6 flex-shrink-0" />}
                     <div className="overflow-hidden whitespace-nowrap opacity-0 max-w-0 group-hover:max-w-[250px] group-hover:opacity-100 group-hover:ml-4 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]">
                       <span className="text-sm uppercase tracking-widest font-bold">
@@ -218,7 +221,7 @@ export default function Home() {
             
             <div id="project-carousel" className="flex gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory pb-12 hide-scrollbar -mx-6 px-6 md:-mx-12 md:px-12 scroll-smooth">
               {loading ? (
-                <div className="w-full text-center py-20 text-[#432016]">Loading projects...</div>
+                <div className="w-full text-center py-20 text-accent-dark">Loading projects...</div>
               ) : projects.length > 0 ? (
                 projects.map((p, i) => {
                   let thumbUrl = siteConfig.defaultProjectImage;
@@ -248,10 +251,10 @@ export default function Home() {
                   );
                 })
               ) : (
-                <div className="w-full text-center py-20 border border-dashed border-[#432016]/20 rounded-3xl">
-                  <p className="text-[#432016]/70 mb-4">No projects yet.</p>
+                <div className="w-full text-center py-20 border border-dashed border-accent-dark/20 rounded-3xl">
+                  <p className="text-accent-dark/70 mb-4">No projects yet.</p>
                   <Link href="/admin/projects/new">
-                    <Button className="bg-[#432016] text-[#DCD2EC] hover:bg-black rounded-full px-8">Add your first project in Admin</Button>
+                    <Button className="bg-accent-dark text-main hover:bg-black rounded-full px-8">Add your first project in Admin</Button>
                   </Link>
                 </div>
               )}
@@ -264,7 +267,7 @@ export default function Home() {
               className="mt-24 flex justify-center"
             >
               <Link href="/works">
-                <Button className="bg-transparent text-[#432016] border-2 border-[#432016] hover:bg-[#432016] hover:text-[#DCD2EC] rounded-full px-12 py-8 text-xl tracking-tighter uppercase font-bold">
+                <Button className="bg-transparent text-accent-dark border-2 border-accent-dark hover:bg-accent-dark hover:text-main rounded-full px-12 py-8 text-xl tracking-tighter uppercase font-bold">
                   View The Archive
                 </Button>
               </Link>

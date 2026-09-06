@@ -18,7 +18,7 @@ export function ProjectCard({ id, title, subtitle, image }: ProjectCardProps) {
     <Link href={`/works/${id}`} className="group block">
       <motion.div
         whileHover="hover"
-        className="relative overflow-hidden rounded-3xl aspect-[4/5] md:aspect-square bg-[#DCD2EC] border border-[#432016]/10"
+        className="relative overflow-hidden rounded-3xl aspect-[4/5] md:aspect-square bg-main border border-accent-dark/10"
       >
         <img
           src={displayImage}
@@ -43,7 +43,7 @@ export function ProjectCard({ id, title, subtitle, image }: ProjectCardProps) {
             hover: { opacity: 1 }
           }}
           initial="initial"
-          className="absolute inset-0 bg-[#432016]/20 flex items-center justify-center backdrop-blur-sm transition-opacity duration-500 z-20"
+          className="absolute inset-0 bg-accent-dark/20 flex items-center justify-center backdrop-blur-sm transition-opacity duration-500 z-20"
         >
           <div className="translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-[#111] text-white rounded-full px-6 py-3 flex items-center gap-3 shadow-xl">
             <span className="opacity-70">&lt; / &gt;</span> 

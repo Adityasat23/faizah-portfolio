@@ -43,7 +43,7 @@ export default function ProjectPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#F4F2EE] text-[#432016]">
+      <div className="min-h-screen flex items-center justify-center bg-secondary text-accent-dark">
         Loading...
       </div>
     );
@@ -51,7 +51,7 @@ export default function ProjectPage() {
 
   if (!project) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#F4F2EE] text-[#432016]">
+      <div className="min-h-screen flex items-center justify-center bg-secondary text-accent-dark">
         Project not found.
       </div>
     );
@@ -136,7 +136,7 @@ export default function ProjectPage() {
     <>
       <Navbar />
       
-      <main className="pt-32 pb-20 min-h-screen bg-[#F4F2EE]">
+      <main className="pt-32 pb-20 min-h-screen bg-secondary">
         <article className="container mx-auto px-6 md:px-12">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-24">
@@ -146,14 +146,14 @@ export default function ProjectPage() {
               animate={{ opacity: 1, y: 0 }}
               className="lg:col-span-8 space-y-8"
             >
-              <h1 className="text-5xl md:text-8xl font-bold tracking-tighter text-[#432016] leading-none uppercase">
+              <h1 className="text-5xl md:text-8xl font-bold tracking-tighter text-accent-dark leading-none uppercase">
                 {project.title}
               </h1>
               <div className="pt-2">
-                <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-[#432016] mb-8 leading-[1.1]">
+                <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-accent-dark mb-8 leading-[1.1]">
                   {project.subtitle}
                 </h2>
-                <p className="text-sm md:text-base font-light leading-relaxed text-[#432016]/80 whitespace-pre-wrap">
+                <p className="text-sm md:text-base font-light leading-relaxed text-accent-dark/80 whitespace-pre-wrap">
                   {project.description}
                 </p>
               </div>
@@ -168,12 +168,12 @@ export default function ProjectPage() {
             >
               {/* Scope of Work / Categories */}
               {((project.category_tags && project.category_tags.length > 0) || (project.scope_of_work && project.scope_of_work.length > 0)) && (
-                <div className="bg-[#432016] text-[#FFC5E6] p-8 rounded-3xl shadow-sm">
-                  <h3 className="font-bold tracking-tighter text-3xl mb-6 border-b border-[#FFC5E6]/20 pb-4">Scope of Work</h3>
+                <div className="bg-accent-dark text-accent-pink p-8 rounded-3xl shadow-sm">
+                  <h3 className="font-bold tracking-tighter text-3xl mb-6 border-b border-accent-pink/20 pb-4">Scope of Work</h3>
                   <ul className="text-xl md:text-2xl font-light leading-relaxed">
                     {(project.category_tags && project.category_tags.length > 0 ? project.category_tags : project.scope_of_work).map((item: string) => (
                       <li key={item} className="mb-3 flex items-start gap-3">
-                        <span className="text-[#FFC5E6]/50 mt-1">✦</span>
+                        <span className="text-accent-pink/50 mt-1">✦</span>
                         {item}
                       </li>
                     ))}
@@ -183,12 +183,12 @@ export default function ProjectPage() {
 
               {/* What We Did Box */}
               {project.what_we_did && project.what_we_did.length > 0 && (
-                <div className="bg-white border border-[#432016]/10 p-8 rounded-3xl shadow-sm">
-                  <h3 className="font-bold tracking-tighter text-[#432016] text-2xl mb-6 border-b border-[#432016]/10 pb-4">What We Did</h3>
-                  <ul className="space-y-3 text-sm font-bold text-[#432016]/70 tracking-wide uppercase">
+                <div className="bg-white border border-accent-dark/10 p-8 rounded-3xl shadow-sm">
+                  <h3 className="font-bold tracking-tighter text-accent-dark text-2xl mb-6 border-b border-accent-dark/10 pb-4">What We Did</h3>
+                  <ul className="space-y-3 text-sm font-bold text-accent-dark/70 tracking-wide uppercase">
                     {project.what_we_did.map((item: string) => (
                       <li key={item} className="flex items-center gap-3">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#432016]/30"></span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-accent-dark/30"></span>
                         {item}
                       </li>
                     ))}
@@ -209,7 +209,7 @@ export default function ProjectPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ type: "spring", stiffness: 100 }}
-                  className="w-full bg-[#DCD2EC] overflow-hidden rounded-3xl border border-[#432016]/10"
+                  className="w-full bg-main overflow-hidden rounded-3xl border border-accent-dark/10"
                 >
                   <img src={img} alt={`Project media ${idx + 1}`} className="w-full h-auto object-cover" />
                 </motion.div>
@@ -228,7 +228,7 @@ export default function ProjectPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ type: "spring", stiffness: 100, delay: 0.2 }}
-                    className={`w-full bg-[#DCD2EC] border border-[#432016]/10 ${aspectClass} flex items-center justify-center overflow-hidden relative rounded-3xl`}
+                    className={`w-full bg-main border border-accent-dark/10 ${aspectClass} flex items-center justify-center overflow-hidden relative rounded-3xl`}
                   >
                     <iframe 
                       className="absolute inset-0 w-full h-full"
@@ -246,15 +246,15 @@ export default function ProjectPage() {
 
           {/* Other Work Section */}
           {otherProjects.length > 0 && (
-            <div className="border-t border-[#432016]/20 pt-16">
-              <h2 className="text-center text-4xl font-bold tracking-tighter text-[#432016] mb-12 uppercase">Other Work</h2>
+            <div className="border-t border-accent-dark/20 pt-16">
+              <h2 className="text-center text-4xl font-bold tracking-tighter text-accent-dark mb-12 uppercase">Other Work</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 {otherProjects.map((p) => (
                  <Link href={`/works/${p.id}`} key={p.id} className="group cursor-pointer">
-                   <div className="aspect-[4/3] bg-[#DCD2EC] mb-4 overflow-hidden border border-[#432016]/10">
+                   <div className="aspect-[4/3] bg-main mb-4 overflow-hidden border border-accent-dark/10">
                      <img src={p.images?.[0] || "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=2564&auto=format&fit=crop"} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt={p.title}/>
                    </div>
-                   <h4 className="font-bold text-xl text-[#432016] group-hover:underline underline-offset-4">{p.title}</h4>
+                   <h4 className="font-bold text-xl text-accent-dark group-hover:underline underline-offset-4">{p.title}</h4>
                  </Link>
                 ))}
               </div>

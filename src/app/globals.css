@@ -1,34 +1,40 @@
 @import "tailwindcss";
 
 :root {
-  --background: #DCD2EC; /* Main color */
-  --foreground: #432016; /* Accent used as text/foreground */
-}
-
-@theme inline {
-  /* Colors */
   --color-main: #DCD2EC;
   --color-secondary: #F4F2EE;
   --color-secondary-blue: #B9DBFF;
   --color-accent-dark: #432016;
   --color-accent-yellow: #FFFFAD;
   --color-accent-pink: #FFC5E6;
+}
 
-  /* Fonts */
+[data-theme="dark"] {
+  --color-main: #2A1215;
+  --color-secondary: #1C090A;
+  --color-secondary-blue: #0F172A;
+  --color-accent-dark: #FFC5E6;
+  --color-accent-yellow: #DCD2EC;
+  --color-accent-pink: #432016;
+}
+
+@theme inline {
+  --color-main: var(--color-main);
+  --color-secondary: var(--color-secondary);
+  --color-secondary-blue: var(--color-secondary-blue);
+  --color-accent-dark: var(--color-accent-dark);
+  --color-accent-yellow: var(--color-accent-yellow);
+  --color-accent-pink: var(--color-accent-pink);
+
   --font-sans: var(--font-helvetica), -apple-system, sans-serif;
   --font-helvetica: var(--font-helvetica);
-
-  /* Semantic Colors mapping to theme */
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: var(--color-main);
+  color: var(--color-accent-dark);
 }
 
-/* Base typography utilities mirroring the moodboard */
 @layer utilities {
   .text-hero {
     font-size: clamp(2.5rem, 6vw, 6rem);
@@ -43,7 +49,7 @@ body {
   }
   
   .text-label {
-    font-size: 0.8125rem; /* 13px */
+    font-size: 0.8125rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     font-weight: 700;

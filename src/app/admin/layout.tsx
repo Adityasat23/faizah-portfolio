@@ -68,7 +68,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <Link 
             href="/" 
             target="_blank"
-            className="block w-full text-left px-4 py-2 text-sm text-[#432016] hover:bg-gray-100 rounded-lg font-medium"
+            className="block w-full text-left px-4 py-2 text-sm text-accent-dark hover:bg-gray-100 rounded-lg font-medium"
           >
             View Live Site ↗
           </Link>
